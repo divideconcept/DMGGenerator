@@ -1,4 +1,4 @@
-# DMGGenerator
+# DMGGenerator (c) 2018 Robin Lobel
 Simple bash script to generate DMG application installers, support background and localized licenses.  
 Your application is centered at 25%,50% of your background image.  
 The shortcut to the /Applications folder is centered at 75%,50% of your background image.  
