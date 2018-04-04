@@ -6,7 +6,7 @@ The shortcut to the /Applications folder is centered at 75%,50% of your backgrou
 
 The license can be in txt or rtf format.  
 Localized licenses are supported, in this case the language code (ISO 639-1) is added before the extension. For instance if you provide "eula_.txt" and specify en fr, it will look for "eula_en.txt" and "eula_fr.txt".  
-Right now the following languages are supported: en fr de it sp ja ru ko zh pt (English French German Italian Spanish Japanese Russian Korean Chinese Portuguese)
+The following languages are supported: en (English) fr (French) de (German) it (Italian) sp (Spanish) ja (Japanese) ru (Russian) ko (Korean) zh (Chinese) pt (Portuguese)
 
 Rez and ResMerger utilities (required when you add licenses) are provided for simplicity, but are part of XCode.  
 This script has been fully tested on OS X 10.10, 10.11, macOS 10.12 and 10.13
