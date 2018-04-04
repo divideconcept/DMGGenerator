@@ -1,12 +1,12 @@
 # DMGGenerator (c) 2018 Robin Lobel
 Simple bash script to generate DMG application installers, support background and localized licenses.  
 
-Your application is centered at 25%,50% of your background image.  
+Your application icon is centered at 25%,50% of your background image.  
 The shortcut to the /Applications folder is centered at 75%,50% of your background image.  
 
 The license can be in txt or rtf format.  
 Localized licenses are supported, in this case the language code (ISO 639-1) is added before the extension. For instance if you provide "eula_.txt" and specify en fr, it will look for "eula_en.txt" and "eula_fr.txt".  
-Right now the following languages are supported: en fr de it sp ja ko zh pt
+Right now the following languages are supported: en fr de it sp ja ru ko zh pt (English French German Italian Spanish Japanese Russian Korean Chinese Portuguese)
 
 Rez and ResMerger utilities (required when you add licenses) are provided for simplicity, but are part of XCode.  
 This script has been fully tested on OS X 10.10, 10.11, macOS 10.12 and 10.13
