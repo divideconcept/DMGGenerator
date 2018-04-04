@@ -1,4 +1,5 @@
 #!/bin/bash
+#(c) 2018 Robin Lobel
 #usage: dmggenerator.bash dmgpath apppath backgroundpath [licensepath] [language1] [language2] [...]
 
 if [ -z "$3" ]
@@ -107,9 +108,10 @@ then
     languagename[3]="it"
     languagename[4]="sp"
     languagename[5]="ja"
-    languagename[6]="ko"
-    languagename[7]="zh"
-    languagename[8]="pt"
+    languagename[6]="ru"
+    languagename[7]="ko"
+    languagename[8]="zh"
+    languagename[9]="pt"
 
     defaultlanguageid=0
     if [ ! -z "$5" ]
@@ -132,9 +134,10 @@ then
     echo -e "\t$\"0004 0003 0000\"" >> $temppath/license.r #Italian
     echo -e "\t$\"0008 0004 0000\"" >> $temppath/license.r #Spanish
     echo -e "\t$\"000E 0005 0001\"" >> $temppath/license.r #Japanese
-    echo -e "\t$\"0033 0006 0001\"" >> $temppath/license.r #Korean
-    echo -e "\t$\"0034 0007 0001\"" >> $temppath/license.r #Chinese
-    echo -e "\t$\"0047 0008 0000\"" >> $temppath/license.r #Portuguese
+    echo -e "\t$\"0031 0006 0001\"" >> $temppath/license.r #Russian
+    echo -e "\t$\"0033 0007 0001\"" >> $temppath/license.r #Korean
+    echo -e "\t$\"0034 0008 0001\"" >> $temppath/license.r #Chinese
+    echo -e "\t$\"0047 0009 0000\"" >> $temppath/license.r #Portuguese
     echo -e "};\r\n" >> $temppath/license.r
 
 cat >> $temppath/license.r <<- EOM
@@ -162,15 +165,19 @@ data 'styl' (5005, "Japanese") {
         $"0000"                                               /* .. */
 };
 
-data 'styl' (5006, "Korean") {
+data 'styl' (5006, "Russian") {
         $"0000"                                               /* .. */
 };
 
-data 'styl' (5007, "Chinese (China)") {
+data 'styl' (5007, "Korean") {
         $"0000"                                               /* .. */
 };
 
-data 'styl' (5008, "Portuguese (Brazil)") {
+data 'styl' (5008, "Chinese (China)") {
+        $"0000"                                               /* .. */
+};
+
+data 'styl' (5009, "Portuguese (Brazil)") {
         $"0000"                                               /* .. */
 };
 
@@ -278,7 +285,23 @@ data 'STR#' (5005, "Japanese") {
         $"AD82 BE82 B382 A281 42"                             /* ________B */
 };
 
-data 'STR#' (5006, "Korean") {
+data 'STR#' (5006, "Russian (Russia)") {
+        $"0006 0752 7573 7369 616E 0891 EEE3 EBE0"            /* ...Russian._____ */
+        $"F1E5 ED0B 8DE5 20F1 EEE3 EBE0 F1E5 ED0B"            /* ___.__ ________. */
+        $"90E0 F1EF E5F7 E0F2 E0F2 FC0A 91EE F5F0"            /* _______________ */
+        $"E0ED E8F2 FCC9 9585 F1EB E820 E2FB 20F1"            /* _____c____ __ _ */
+        $"EEE3 EBE0 F1ED FB20 F120 F3F1 EBEE E2E8"            /* _______ _ ______ */
+        $"DFEC E820 FDF2 EEE9 20EB E8F6 E5ED E7E8"            /* ___ ____ _______ */
+        $"E82C 20ED E0E6 ECE8 F2E5 20C7 91EE E3EB"            /* _, _______ O___ */
+        $"E0F1 E5ED C82C 20F7 F2EE E1FB 20F3 F1F2"            /* _____, _____ ___ */
+        $"E0ED EEE2 E8F2 FC20 EFF0 EEE3 F0E0 ECEC"            /* _______ ________ */
+        $"EDEE E520 EEE1 E5F1 EFE5 F7E5 EDE8 E52E"            /* ___ ___________. */
+        $"2085 F1EB E820 E2FB 20ED E520 F1EE E3EB"            /*  ____ __ __ ____ */
+        $"E0F1 EDFB 2C20 EDE0 E6EC E8F2 E520 C78D"            /* ____, _______ A */
+        $"E520 F1EE E3EB E0F1 E5ED C82E"                      /* _ _________. */
+};
+
+data 'STR#' (5007, "Korean") {
         $"0006 064B 6F72 6561 6E04 B5BF C0C7 09B5"            /* ...Korean.____Z */
         $"BFC0 C720 BEC8 C7D4 06C7 C1B8 B0C6 AE07"            /* ___ ____.____T. */
         $"C0FA C0E5 2E2E 2E7F 7EBB E7BF EB20 B0E8"            /* ____....~____ __ */
@@ -292,7 +315,7 @@ data 'STR#' (5006, "Korean") {
         $"BDCA BDC3 BFC0 2E"                                  /* __y_. */
 };
 
-data 'STR#' (5007, "Chinese (China)") {
+data 'STR#' (5008, "Chinese (China)") {
         $"0006 1253 696D 706C 6966 6965 6420 4368"            /* ...Simplified Ch */
         $"696E 6573 6504 CDAC D2E2 06B2 BBCD ACD2"            /* inese.___.____ */
         $"E204 B4F2 D3A1 06B4 E6B4 A2A1 AD54 C8E7"            /* _.___.____T__ */
@@ -304,7 +327,7 @@ data 'STR#' (5007, "Chinese (China)") {
         $"A1A3"                                               /* __ */
 };
 
-data 'STR#' (5008, "Portuguese (Brazil)") {
+data 'STR#' (5009, "Portuguese (Brazil)") {
         $"0006 1150 6F72 7475 6775 9073 2C20 4272"            /* ...Portugu_s, Br */
         $"6173 696C 0943 6F6E 636F 7264 6172 0944"            /* asil_Concordar_D */
         $"6973 636F 7264 6172 0849 6D70 7269 6D69"            /* iscordar.Imprimi */
