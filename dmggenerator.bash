@@ -126,7 +126,7 @@ then
     #add language index
     echo -e "data 'LPic' (5000) {" > $temppath/license.r
     echo -e "\t$\"000$defaultlanguageid\"" >> $temppath/license.r #default language
-    echo -e "\t$\"0009\"" >> $temppath/license.r #number of languages
+    echo -e "\t$\"000A\"" >> $temppath/license.r #number of languages
     #Region codes from CarbonCore.framework/Versions/A/Headers/Script.h, ID in file (offset from 5000), is 2-byte language
     echo -e "\t$\"0000 0000 0000\"" >> $temppath/license.r #English
     echo -e "\t$\"0001 0001 0000\"" >> $temppath/license.r #French
