@@ -106,7 +106,7 @@ then
     languagename[1]="fr"
     languagename[2]="de"
     languagename[3]="it"
-    languagename[4]="sp"
+    languagename[4]="es"
     languagename[5]="ja"
     languagename[6]="ru"
     languagename[7]="ko"
