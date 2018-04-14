@@ -41,7 +41,7 @@ touch $temppath/.DS_Store
 mkdir -p "$dmgfolder"
 
 mv "$apppath" $temppath
-hdiutil create "$dmgpath" -srcfolder $temppath -ov -volname "$dmgname" -format UDRW
+hdiutil create "$dmgpath" -srcfolder $temppath -ov -volname "$dmgname" -format UDRW -fs HFS+
 mv $temppath/"$appfile" "$appfolder"
 
 echo "Setting the layout..."
