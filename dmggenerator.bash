@@ -18,6 +18,7 @@ dmgname=${dmgfile%.*}
 apppath=$2
 appfolder=$(dirname "$apppath")
 appfile=$(basename "$apppath")
+appextension=${appfile##*.}
 appname=${appfile%.*}
 
 backgroundpath=$3
@@ -25,15 +26,18 @@ backgroundfile=$(basename "$backgroundpath")
 
 temppath=/tmp/dmggenerator
 
-echo "DMG Generator 1.0"
+echo "DMG Generator 1.1"
 
 echo "Initializing the DMG..."
 
 rm -r $temppath 2>/dev/null
 mkdir -p $temppath
 
-#create Applications shortcut, copy background file, create DS_Store
+#create Applications shortcut (if needed), copy background file, create DS_Store
+if [ $appextension == "app" ]
+then
 ln -s /Applications $temppath/Applications
+fi
 mkdir -p $temppath/.hidden
 cp "$backgroundpath" $temppath/.hidden/"$backgroundfile"
 touch $temppath/.DS_Store
@@ -59,34 +63,61 @@ toplefty=100
 let bottomrightx=$backgroundwidth+$topleftx
 let bottomrighty=$backgroundheight+$toplefty
 let centery=$backgroundheight/2
-let centerxmyapp=$backgroundwidth/4
-let centerxapps=3*$backgroundwidth/4
 
-#set the layout
-echo '
-tell application "Finder"
-    tell disk "'$dmgname'"
-       set current view of container window to icon view
-       set theViewOptions to the icon view options of container window
-       set icon size of theViewOptions to 96
-       set background picture of theViewOptions to file ".hidden:'$backgroundfile'"
-       open
-       set toolbar visible of container window to false
-       set statusbar visible of container window to false
-       set the bounds of container window to {'$topleftx', '$toplefty', '$bottomrightx', '$bottomrighty'}
-       set position of item "'$appfile'" of container window to {'$centerxmyapp', '$centery'}
-       set position of item "Applications" of container window to {'$centerxapps', '$centery'}
-       update without registering applications
-       delay 1
-       close
-       eject
+if [ $appextension == "app" ]
+then
+    let centerxmyapp=$backgroundwidth/4
+    let centerxapps=3*$backgroundwidth/4
+
+    #set the layout
+    echo '
+    tell application "Finder"
+        tell disk "'$dmgname'"
+           set current view of container window to icon view
+           set theViewOptions to the icon view options of container window
+           set icon size of theViewOptions to 96
+           set background picture of theViewOptions to file ".hidden:'$backgroundfile'"
+           open
+           set toolbar visible of container window to false
+           set statusbar visible of container window to false
+           set the bounds of container window to {'$topleftx', '$toplefty', '$bottomrightx', '$bottomrighty'}
+           set position of item "'$appfile'" of container window to {'$centerxmyapp', '$centery'}
+           set position of item "Applications" of container window to {'$centerxapps', '$centery'}
+           update without registering applications
+           delay 1
+           close
+           eject
+        end tell
     end tell
-end tell
-' | osascript
+    ' | osascript
+else
+    let centerxmyapp=$backgroundwidth/2
+
+    #set the layout
+    echo '
+    tell application "Finder"
+        tell disk "'$dmgname'"
+           set current view of container window to icon view
+           set theViewOptions to the icon view options of container window
+           set icon size of theViewOptions to 96
+           set background picture of theViewOptions to file ".hidden:'$backgroundfile'"
+           open
+           set toolbar visible of container window to false
+           set statusbar visible of container window to false
+           set the bounds of container window to {'$topleftx', '$toplefty', '$bottomrightx', '$bottomrighty'}
+           set position of item "'$appfile'" of container window to {'$centerxmyapp', '$centery'}
+           update without registering applications
+           delay 1
+           close
+           eject
+        end tell
+    end tell
+    ' | osascript
+fi
 
 
 diskutil eject /Volumes/"$dmgname" 2>/dev/null
-hdiutil mount "$dmgfile"
+hdiutil mount "$dmgpath"
 
 bless --folder /Volumes/"$dmgname" --openfolder /Volumes/"$dmgname"
 diskutil eject /Volumes/"$dmgname"
