@@ -83,8 +83,10 @@ then
            set the bounds of container window to {'$topleftx', '$toplefty', '$bottomrightx', '$bottomrighty'}
            set position of item "'$appfile'" of container window to {'$centerxmyapp', '$centery'}
            set position of item "Applications" of container window to {'$centerxapps', '$centery'}
+           close
+           open
            update without registering applications
-           delay 1
+           delay 3
            close
            eject
         end tell
@@ -106,8 +108,10 @@ else
            set statusbar visible of container window to false
            set the bounds of container window to {'$topleftx', '$toplefty', '$bottomrightx', '$bottomrighty'}
            set position of item "'$appfile'" of container window to {'$centerxmyapp', '$centery'}
+           close
+           open
            update without registering applications
-           delay 1
+           delay 3
            close
            eject
         end tell
