@@ -1,7 +1,7 @@
 # DMGGenerator (c) 2018 Robin Lobel
 Simple bash script to generate DMG application and package installers, support background and localized licenses.  
 
-In case of an application installer, your application icon is centered at 25%,50% of your background image and the shortcut to the /Applications folder is centered at 75%,50% of your background image.
+In case of an application installer, your application icon is centered at 25%,50% of your background image and the shortcut to the /Applications folder is centered at 75%,50% of your background image.  
 In case of a package installer, your package icon is centered at 50%,50% of your background image.
 
 The license can be in txt or rtf format.  
