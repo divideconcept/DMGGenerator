@@ -86,7 +86,7 @@ then
            close
            open
            update without registering applications
-           delay 3
+           delay 1
            close
            eject
         end tell
@@ -111,7 +111,7 @@ else
            close
            open
            update without registering applications
-           delay 3
+           delay 1
            close
            eject
         end tell
